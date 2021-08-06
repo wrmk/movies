@@ -27,6 +27,12 @@
   <%= paginate @movies %>
 </table>
 
+<%= form_with url: "/", method: :get do |form| %>
+  <%= form.label :genre, "Filter by genre:" %>
+  <%= select_tag :category, options_for_select(@category) %>
+  <%= form.submit "Filter" %>
+<% end %>
+
 <br>
 
 <%= link_to 'New Movie', new_movie_path %>
