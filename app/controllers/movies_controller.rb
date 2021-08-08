@@ -3,7 +3,11 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.page params[:page]
+    if params[:category]
+      @movies = Movie.where(category: params[:category]).page params[:page]
+    else
+      @movies = Movie.page params[:page]
+    end
   end
 
   # GET /movies/1 or /movies/1.json
