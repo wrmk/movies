@@ -17,7 +17,7 @@
       <tr>
         <td><%= movie.title %></td>
         <td><%= movie.text %></td>
-        <td><%= movie.category %></td>
+        <td><%= movie.category.capitalize %></td>
         <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,8 +29,7 @@
 
 <%= form_with url: "/", method: :get do |form| %>
   <%= form.label :category, "Filter by category:" %>
-  <%= select_tag :category, options_for_select(@category) %>
-  <%= form.submit "Filter" %>
+  <%= select_tag :category, options_for_select(@category),:onclick => "window.location.replace('/movies/category/'+this.value);" %>
 <% end %>
 
 <br>

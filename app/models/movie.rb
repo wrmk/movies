@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
   def self.categories
-    @category = %w[Comedy Horror Romance]
+    @category = %w[comedy horror romance]
   end
 
   validates :title, presence: true, uniqueness: true
