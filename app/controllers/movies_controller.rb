@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    if params[:category]
+    if params[:category] && params[:category] != 'all'
       @movies = Movie.where(category: params[:category]).page params[:page]
     else
       @movies = Movie.page params[:page]

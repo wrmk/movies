@@ -29,7 +29,10 @@
 
 <%= form_with url: "/", method: :get do |form| %>
   <%= form.label :category, "Filter by category:" %>
-  <%= select_tag :category, options_for_select(@category),:onclick => "window.location.replace('/movies/category/'+this.value);" %>
+  <%= select_tag :category,
+      options_for_select(@category, params[:category]),
+      
+      :onchange => "window.location.replace('/movies/category/'+this.value);" %>
 <% end %>
 
 <br>
