@@ -16,6 +16,7 @@
         <th><%= index + 1 + (@movies.current_page - 1) * @movies.count  %></th>
         <td><%= link_to movie.title, movie %></td>
         <td><%= movie.text %></td>
+        <td><%= movie.rating.overall %></td>
         <td><%= movie.category.capitalize %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>     

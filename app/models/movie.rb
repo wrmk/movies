@@ -8,4 +8,6 @@ class Movie < ApplicationRecord
   validates :category, inclusion: {in: categories}
 
 
+  has_one :rating
+  accepts_nested_attributes_for :rating
 end
