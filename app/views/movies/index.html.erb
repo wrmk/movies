@@ -1,26 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Movies</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Text</th>
-      <th>Category</th>
-      <th colspan="3"></th>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Text</th>
+      <th scope="col">Category</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @movies.each do |movie| %>
+    <% @movies.each_with_index do |movie,index| %>
       <tr>
-        <td><%= movie.title %></td>
+        <th><%= index + 1 + (@movies.current_page - 1) * @movies.count  %></th>
+        <td><%= link_to movie.title, movie %></td>
         <td><%= movie.text %></td>
         <td><%= movie.category.capitalize %></td>
-        <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>     
       </tr>
     <% end %>
   </tbody>
@@ -31,10 +29,11 @@
   <%= form.label :category, "Filter by category:" %>
   <%= select_tag :category,
       options_for_select(@category, params[:category]),
-      
       :onchange => "window.location.replace('/movies/category/'+this.value);" %>
 <% end %>
 
 <br>
 
 <%= link_to 'New Movie', new_movie_path %>
+
+
