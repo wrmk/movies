@@ -1,18 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
+  <h1><%= @movie.title %></h1>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <%= button_to @movie.category,
+  "category/#{@movie.category}",
+  method: :get,
+  class:"btn btn-dark"%>
+</p>
+
+<p>
   <%= @movie.text %>
 </p>
 
+
+
 <p>
-  <strong>Category:</strong>
-  <%= @movie.category %>
+  <strong>Rating:</strong>
+  <%= @movie.rating.overall %>
 </p>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |

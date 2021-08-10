@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'movies#index'
   resources :movies do
     collection do
+      # Movie.categories.map{|category| get "category/#{category}", to: 'movies#index'}
       get 'category/:category', to: 'movies#index'
     end
   end
