@@ -29,24 +29,18 @@
 
 <%= link_to 'New Movie', new_movie_path %>
 
-<div id="rate">
-  <%= form_with url: "/",local: false do |u|%>
-    <div class="input-group">  
-        <span class="input-group-text" id="basic-addon1"><%= @rating %>/10</span>
-        <div class="w-15">
-          <%= select_tag "rate", options_for_select(1..10),class:"form-control" %>
-        </div>
-        <%= u.submit 'Rate!',class:"btn btn-outline-secondary"%>
-    </div>
-  <%end%>
-</div>
+
 
 <div id="star"></div>
+
+
 
 <script>
   $('#star').raty({ 
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-    score: 3 });
+    score: 3,
+    number: 10,
+    scoreName: 'comment[star]'
+  });
 </script>
-
