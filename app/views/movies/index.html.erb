@@ -41,4 +41,12 @@
   <%end%>
 </div>
 
+<div id="star"></div>
+
+<script>
+  $('#star').raty({ 
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    score: 3 });
+</script>
 
