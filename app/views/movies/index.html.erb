@@ -2,14 +2,6 @@
 
 
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Text</th>
-      <th scope="col">Category</th>
-    </tr>
-  </thead>
   <tbody>
     <% @movies.each_with_index do |movie,index| %>
       <tr>
@@ -18,7 +10,8 @@
         <td><%= movie.text %></td>
         <td><%= movie.category.capitalize %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>     
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+        <td>Rate</td>    
       </tr>
     <% end %>
   </tbody>
@@ -35,5 +28,17 @@
 <br>
 
 <%= link_to 'New Movie', new_movie_path %>
+
+<div id="rate">
+  <%= form_with url: "/",local: false do |u|%>
+    <div class="input-group">  
+        <span class="input-group-text" id="basic-addon1"><%= @rating %>/10</span>
+        <div class="w-15">
+          <%= select_tag "rate", options_for_select(1..10),class:"form-control" %>
+        </div>
+        <%= u.submit 'Rate!',class:"btn btn-outline-secondary"%>
+    </div>
+  <%end%>
+</div>
 
 
