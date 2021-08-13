@@ -11,7 +11,7 @@
         <td><%= movie.category.capitalize %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
-        <td>Rate</td>    
+        <td id="star"></td>   
       </tr>
     <% end %>
   </tbody>
@@ -31,7 +31,7 @@
 
 
 
-<div id="star"></div>
+
 
 
 
@@ -39,8 +39,10 @@
   $('#star').raty({ 
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-    score: 3,
     number: 10,
-    scoreName: 'comment[star]'
+    click: function(score) {
+
+        console.log(score)
+    }
   });
 </script>
