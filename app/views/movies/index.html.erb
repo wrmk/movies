@@ -11,7 +11,14 @@
         <td><%= movie.category.capitalize %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
-        <td id="star"></td>   
+        <td>
+          <button type="button"
+            class="btn btn-secondary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Rate
+          </button>
+        </td>   
       </tr>
     <% end %>
   </tbody>
@@ -34,6 +41,19 @@
 
 
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div id="star"></div>
+        <button type="button" class="btn btn-primary">Rate!</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <script>
   $('#star').raty({ 
@@ -41,7 +61,6 @@
     starOn : '<%= asset_path('star-on.png') %>',
     number: 10,
     click: function(score) {
-
         console.log(score)
     }
   });
