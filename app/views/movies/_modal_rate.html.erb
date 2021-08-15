@@ -1,26 +1,30 @@
-
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <%= form_with url: rate_path,local: false do |u|%> 
-        <div class="modal-header">
-          <div id="star"></div>
-          <%= u.hidden_field :id, id:"movie_id"%>
-          <%= u.submit 'Rate!',class:"btn btn-outline-secondary"%>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close</button>
-        </div>
-      <%end%>  
-    </div>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <%= form_with url: rate_update_path,local: false do |u|%> 
+      <div class="modal-header">
+        <div id="star"></div>
+        <%= u.hidden_field :id,
+            id:"movie_id"%>
+        <%= u.submit 'Rate!',
+            class:"btn btn-outline-secondary",
+            :onclick=>"CloseModal()"%>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close</button>
+      </div>
+    <%end%>  
   </div>
+</div>
 
 
 <script>
   $('#star').raty({ 
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
+    score: 1,
     number: 10,
-    click: function(score) {
-        console.log(score)
-    }
   });
+
+ function CloseModal() {
+    $('#myModal').modal('hide')
+  };   
 </script>

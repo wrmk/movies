@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'movies#index'
   post 'rate' => 'movies#rate'
+  post 'rate_update' => 'movies#rate_update'
   resources :movies do
     collection do
       # Movie.categories.map{|category| get "category/#{category}", to: 'movies#index'}

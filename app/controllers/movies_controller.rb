@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy rate ]
+  before_action :set_movie, only: %i[ show edit update destroy rate rate_update ]
 
   # GET /movies or /movies.json
   def index
@@ -63,9 +63,12 @@ class MoviesController < ApplicationController
 
   def rate
     respond_to do |format|
-      # format.html {render "index"}
       format.js
     end
+  end
+
+  def rate_update
+    @movie.rating.update(overall: params[:score])
   end
 
   private
