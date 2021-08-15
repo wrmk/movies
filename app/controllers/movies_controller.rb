@@ -12,7 +12,8 @@ class MoviesController < ApplicationController
 
   # GET /movies/1 or /movies/1.json
   def show
-    @rating = @movie.rating.overall / @movie.rating.votes
+    @votes = @movie.rating.votes
+    @rating = @movie.rating.overall / @votes
   end
 
   # GET /movies/new
