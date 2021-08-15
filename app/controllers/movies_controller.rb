@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy rate rate_update ]
+  before_action :set_movie, only: %i[ show edit update destroy ]
 
   # GET /movies or /movies.json
   def index
@@ -59,16 +59,6 @@ class MoviesController < ApplicationController
       format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
-  end
-
-  def rate
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def rate_update
-    @movie.rating.update(overall: params[:score])
   end
 
   private
