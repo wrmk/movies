@@ -62,10 +62,11 @@ class MoviesController < ApplicationController
   end
 
   def rate
-    # @movie = User.all
-    # respond_to do |format|
-    # format.js
-    # end  
+    @movie = set_movie
+    respond_to do |format|
+      # format.html {render "index"}
+      format.js
+    end
   end
 
   private

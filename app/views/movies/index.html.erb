@@ -14,10 +14,10 @@
         <td>
           <%= button_to 'Rate',
           rate_path(:id => movie.id),{ 
-            local:false,
+            remote: true,
             class:"btn btn-secondary",
             'data-bs-toggle'=>"modal",
-            'data-bs-target'=>"#exampleModal"
+            'data-bs-target'=>"#myModal"
           }%>
         </td>   
       </tr>
@@ -26,7 +26,7 @@
   <%= paginate @movies %>
 </table>
 
-<%= form_with url: "/", method: :get do |form| %>
+<%= form_with url: root_path, method: :get do |form| %>
   <%= form.label :category, "Filter by category:" %>
   <%= select_tag :category,
       options_for_select(@category, params[:category]),
@@ -38,35 +38,6 @@
 <%= link_to 'New Movie', new_movie_path %>
 
 
-
-
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <%= form_with url: "/",local: false do |u|%> 
-        <div class="modal-header">
-          <div id="star"></div>
-          <%= u.hidden_field :id, :value => :id%>
-          <%= u.submit 'Rate!',class:"btn btn-outline-secondary"%>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close</button>
-        </div>
-      <%end%>  
-    </div>
-  </div>
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <%= render 'modal_rate'%>
 </div>
-
-
-
-<script>
-  $('#star').raty({ 
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    number: 10,
-    click: function(score) {
-        console.log(score)
-    }
-  });
-</script>
