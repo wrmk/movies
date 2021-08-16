@@ -1,16 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-
 <table class="table table-striped">
   <tbody>
     <% @movies.each_with_index do |movie,index| %>
-      <tr>
+      <tr class="align-middle">
         <th><%= index + 1 + (@movies.current_page - 1) * @movies.count  %></th>
         <td><%= link_to movie.title, movie %></td>
         <td><%= movie.text %></td>
         <td><%= movie.category.capitalize %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
         <td>
           <%= button_to 'Rate',
           rate_path(:id => movie.id),{ 
@@ -19,12 +14,16 @@
             'data-bs-toggle'=>"modal",
             'data-bs-target'=>"#myModal"
           }%>
-        </td>   
+        </td>          
+        <%if user_signed_in?%>
+        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+        <%end%>
       </tr>
     <% end %>
   </tbody>
-  <%= paginate @movies %>
 </table>
+<%= paginate @movies %>
 
 <%= form_with url: root_path, method: :get do |form| %>
   <%= form.label :category, "Filter by category:" %>
@@ -33,9 +32,6 @@
       :onchange => "window.location.replace('/movies/category/'+this.value);" %>
 <% end %>
 
-<br>
-
-<%= link_to 'New Movie', new_movie_path %>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
