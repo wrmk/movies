@@ -1,5 +1,6 @@
 class RatingController < ApplicationController
   before_action :set_movie, only: %i[ rate rate_update ]
+  before_action :authenticate_user!, only: [:rate_update]
 
   def rate
     respond_to do |format|

@@ -1,8 +1,18 @@
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <%= link_to 'Movies', root_path, class:"navbar-brand"%>
-      <ul class="navbar-nav mr-auto">
-      </ul>
+        <%if user_signed_in?%>
+          <li class="navbar-text">
+            <%= current_user.email%> 
+            <%= link_to 'Sign Out',destroy_user_session_path,method: :delete, class:"nav-link"%>
+          </li> 
+        <%end%> 
+
+        <%if !user_signed_in?%>
+          <li class="navbar-brand">
+            <%= link_to 'Sign In',new_user_session_path, class:"nav-link"%>
+          </li> 
+        <%end%>
     </div>          
 </nav>
 
