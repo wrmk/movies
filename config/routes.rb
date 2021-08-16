@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'movies#index'
   post 'rate' => 'rating#rate'
   post 'rate_update' => 'rating#rate_update'
