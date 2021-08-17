@@ -64,7 +64,9 @@ class MoviesController < ApplicationController
   end
 
   def rated(id)
-    current_user.rated.include?(id) ? true : false
+    if current_user
+      current_user.rated.include?(id) ? true : false
+    end
   end
 
   private

@@ -9,12 +9,13 @@ class RatingController < ApplicationController
   end
 
   def rate_update
-    @movie.rating.increment(:overall, params[:score].to_i)
-    @movie.rating.increment(:votes, 1)
-    @movie.rating.save
     if current_user.rated.exclude?(@movie.id) then
       current_user.rated << @movie.id
       current_user.save
+
+      @movie.rating.increment(:overall, params[:score].to_i)
+      @movie.rating.increment(:votes, 1)
+      @movie.rating.save
     end
   end
 
