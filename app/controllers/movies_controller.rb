@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
+  helper_method :rated
 
   # GET /movies or /movies.json
   def index
@@ -60,6 +61,10 @@ class MoviesController < ApplicationController
       format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def rated(id)
+    current_user.rated.include?(id) ? true : false
   end
 
   private

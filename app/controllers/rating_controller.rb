@@ -12,6 +12,10 @@ class RatingController < ApplicationController
     @movie.rating.increment(:overall, params[:score].to_i)
     @movie.rating.increment(:votes, 1)
     @movie.rating.save
+    if current_user.rated.exclude?(@movie.id) then
+      current_user.rated << @movie.id
+      current_user.save
+    end
   end
 
   private

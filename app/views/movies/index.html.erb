@@ -12,7 +12,8 @@
             remote: true,
             class:"btn btn-secondary",
             'data-bs-toggle'=>"modal",
-            'data-bs-target'=>"#myModal"
+            'data-bs-target'=>"#myModal",
+            disabled:  rated(movie.id)  ? true : false 
           }%>
         </td>          
         <%if user_signed_in?%>
