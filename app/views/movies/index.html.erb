@@ -26,13 +26,18 @@
 </table>
 <%= paginate @movies %>
 
-<%= form_with url: root_path, method: :get do |form| %>
-  <%= form.label :category, "Filter by category:" %>
-  <%= select_tag :category,
-      options_for_select(@category, params[:category]),
-      :onchange => "window.location.replace('/movies/category/'+this.value);" %>
-<% end %>
 
+<%= form_with url: root_path, method: :get do |form| %>
+  <div class="input-group">  
+    <span class="input-group-text" id="basic-addon1">Category</span>
+    <div class="w-20">
+      <%= select_tag :category,
+      options_for_select(@category, params[:category]),
+      :onchange => "window.location.replace('/movies/category/'+this.value);",
+      class:"form-control" %>
+    </div>
+  </div>
+<%end%>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
