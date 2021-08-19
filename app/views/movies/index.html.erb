@@ -38,7 +38,7 @@
 
 <%= form_with url: root_path, method: :get do |form| %>
   <div class="input-group">  
-    <span class="input-group-text" id="basic-addon1">Category</span>
+    <span class="input-group-text">Category</span>
     <div class="w-20">
       <%= select_tag :category,
       options_for_select(@category, params[:category]),
