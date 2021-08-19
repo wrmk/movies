@@ -15,10 +15,19 @@
             'data-bs-target'=>"#myModal",
             disabled:  rated(movie.id)  ? true : false 
           }%>
-        </td>          
+        </td>
         <%if user_signed_in?%>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+          <td><%= button_to 'Edit',
+            edit_movie_path(movie),
+            method: :get,
+            class:"btn btn-secondary" %> 
+          </td>
+          <td><%= button_to 'Destroy',
+            movie,
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class:"btn btn-secondary" %>
+          </td>                   
         <%end%>
       </tr>
     <% end %>
