@@ -11,18 +11,28 @@
   class:"btn btn-dark"%>
 </p>
 
-<p>
+<h5>
   <%= @movie.text %>
-</p>
+</h5>
 
-<p>
+<h6>
   <%= @rating %>/10 Total votes: <%= @votes%>
-</p>
+</h6>
 
 
+<%= button_to 'Edit',
+  edit_movie_path(@movie),
+  method: :get,
+  class:"btn btn-secondary",
+  form: {style: 'display:inline-block;'}
+%> 
+<%= button_to 'Back',
+  movies_path,
+  method: :get,
+  class:"btn btn-secondary",
+  form: {style: 'display:inline-block;'}
+%>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
 
 
 
