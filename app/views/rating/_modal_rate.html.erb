@@ -4,11 +4,11 @@
       <div class="modal-header">
         <div id="star"></div>
         <%= u.hidden_field :id,
-            id:"movie_id"%>
+          id:"movie_id"%>
         <%= u.submit 'Rate!',
-            class:"btn btn-outline-secondary",
-            :onclick=>"CloseModal()",
-            data: { disable_with: false }%>
+          class:"btn btn-outline-secondary",
+          onclick:"CloseModal()",
+          data: { disable_with: false }%>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
         Close</button>
       </div>

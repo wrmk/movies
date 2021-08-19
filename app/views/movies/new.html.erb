@@ -2,4 +2,9 @@
 
 <%= render 'form', movie: @movie %>
 
-<%= link_to 'Back', movies_path %>
+<%= button_to 'Back',
+  movies_path,
+  method: :get,
+  class:"btn btn-secondary",
+  form: {style: 'display:inline-block;'}
+%>

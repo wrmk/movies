@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
-  helper_method :rated
+  before_action :check_if_admin, only: %i[ edit create update destroy ]
+  helper_method :rated, :counter
 
   # GET /movies or /movies.json
   def index
@@ -69,6 +70,10 @@ class MoviesController < ApplicationController
     end
   end
 
+  def counter(index)
+    index + 1 + (@movies.current_page - 1) * @movies.count
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
@@ -78,5 +83,9 @@ class MoviesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def movie_params
       params.require(:movie).permit(:title, :text, :category)
+    end
+
+    def check_if_admin
+      redirect_to root_path unless current_user.is_admin?
     end
 end

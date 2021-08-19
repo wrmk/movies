@@ -2,7 +2,7 @@
   <tbody>
     <% @movies.each_with_index do |movie,index| %>
       <tr class="align-middle">
-        <th><%= index + 1 + (@movies.current_page - 1) * @movies.count  %></th>
+        <th><%= counter(index) %></th>
         <td><%= link_to movie.title, movie %></td>
         <td><%= movie.text %></td>
         <td><%= movie.category.capitalize %></td>
@@ -16,18 +16,20 @@
             disabled:  rated(movie.id)  ? true : false 
           }%>
         </td>
-        <%if user_signed_in?%>
-          <td><%= button_to 'Edit',
-            edit_movie_path(movie),
-            method: :get,
-            class:"btn btn-secondary" %> 
-          </td>
-          <td><%= button_to 'Destroy',
-            movie,
-            method: :delete,
-            data: { confirm: 'Are you sure?' },
-            class:"btn btn-secondary" %>
-          </td>                   
+        <% if user_signed_in? %>
+          <%if current_user.is_admin?%>
+            <td><%= button_to 'Edit',
+              edit_movie_path(movie),
+              method: :get,
+              class:"btn btn-secondary" %> 
+            </td>
+            <td><%= button_to 'Destroy',
+              movie,
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              class:"btn btn-secondary" %>
+            </td>                   
+          <%end%>
         <%end%>
       </tr>
     <% end %>
@@ -42,7 +44,7 @@
     <div class="w-20">
       <%= select_tag :category,
       options_for_select(@category, params[:category]),
-      :onchange => "window.location.replace('/movies/category/'+this.value);",
+      onclick:"window.location.replace('/movies/category/'+this.value);",
       class:"form-control" %>
     </div>
   </div>
