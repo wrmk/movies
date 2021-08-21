@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2021_08_18_175707) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.integer "overall"
-    t.integer "votes"
+    t.integer "overall", default: 0, null: false
+    t.integer "votes", default: 0, null: false
     t.bigint "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

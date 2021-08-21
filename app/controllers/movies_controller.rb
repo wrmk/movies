@@ -15,7 +15,11 @@ class MoviesController < ApplicationController
   # GET /movies/1 or /movies/1.json
   def show
     @votes = @movie.rating.votes
-    @rating = @movie.rating.overall / @votes
+    if @movie.rating.overall != 0
+      @rating = @movie.rating.overall / @votes
+    else
+      @rating = 0
+    end
   end
 
   # GET /movies/new
@@ -35,6 +39,7 @@ class MoviesController < ApplicationController
       if @movie.save
         format.html { redirect_to @movie, notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
+        @movie.rating = Rating.create
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
