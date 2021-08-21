@@ -9,7 +9,7 @@ RSpec.describe RatingController do
   it "increment votes and overall rating" do
     params = ActionController::Parameters.new(score: '5')
     allow(controller).to receive(:params).and_return(params)
-    controller.increment_rate(@movie)
+    controller.increment_rate(@movie.rating)
     
     expect(@movie.rating.overall).to eql 5
   end
@@ -22,4 +22,4 @@ RSpec.describe RatingController do
     expect(controller.rate_allowed).to eql false
   end
 
-end  
+end
