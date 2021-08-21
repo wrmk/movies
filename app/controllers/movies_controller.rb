@@ -76,7 +76,7 @@ class MoviesController < ApplicationController
   end
 
   def counter(index)
-    index + 1 + (@movies.current_page - 1) * @movies.count
+    index + 1 + (@movies.current_page - 1) * @movies.page.limit_value
   end
 
   private
