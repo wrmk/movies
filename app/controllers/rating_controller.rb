@@ -9,14 +9,22 @@ class RatingController < ApplicationController
   end
 
   def rate_update
-    if current_user.rated.exclude?(@movie.id) && (1..10).include?(rate_params) then
+    if current_user.rated.exclude?(@movie.id) && rate_allowed then
       current_user.rated << @movie.id
       current_user.save
 
-      @movie.rating.increment(:overall, rate_params)
-      @movie.rating.increment(:votes, 1)
-      @movie.rating.save
+      increment_rate(@movie.rating)
     end
+  end
+
+  def increment_rate(rating)
+      rating.increment(:overall, rate_params)
+      rating.increment(:votes, 1)
+      rating.save
+  end
+
+  def rate_allowed
+    (1..10).include?(rate_params)
   end
 
   private
