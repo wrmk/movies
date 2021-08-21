@@ -7,6 +7,6 @@ class Movie < ApplicationRecord
   validates :text, presence: true
   validates :category, inclusion: {in: categories}
 
-  has_one :rating
+  has_one :rating, dependent: :destroy
   accepts_nested_attributes_for :rating
 end
