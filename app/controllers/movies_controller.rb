@@ -7,8 +7,10 @@ class MoviesController < ApplicationController
   def index
     if params[:category] && params[:category] != 'all'
       @movies = Movie.where(category: params[:category]).page params[:page]
+      @selected_category = params[:category]
     else
       @movies = Movie.page params[:page]
+      @selected_category = 'all'
     end
   end
 
