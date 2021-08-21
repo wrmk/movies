@@ -9,11 +9,11 @@ class RatingController < ApplicationController
   end
 
   def rate_update
-    if current_user.rated.exclude?(@movie.id) then
+    if current_user.rated.exclude?(@movie.id) && (1..10).include?(rate_params) then
       current_user.rated << @movie.id
       current_user.save
 
-      @movie.rating.increment(:overall, params[:score].to_i)
+      @movie.rating.increment(:overall, rate_params)
       @movie.rating.increment(:votes, 1)
       @movie.rating.save
     end
@@ -22,5 +22,8 @@ class RatingController < ApplicationController
   private
     def set_movie
       @movie = Movie.find(params[:id])
-    end    
+    end 
+    def rate_params
+      params[:score] = params[:score].to_i   
+    end 
 end
