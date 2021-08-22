@@ -12,6 +12,7 @@ RSpec.describe RatingController do
     controller.increment_rate(@movie.rating)
     
     expect(@movie.rating.overall).to eql 5
+    expect(@movie.rating.votes).to eql 1
   end
 
 
