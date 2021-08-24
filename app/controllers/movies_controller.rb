@@ -1,7 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
   before_action :check_if_admin, only: %i[ edit create update destroy ]
-  helper_method :rated, :counter
 
   # GET /movies or /movies.json
   def index
@@ -69,16 +68,6 @@ class MoviesController < ApplicationController
       format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
-  end
-
-  def rated(id)
-    if current_user
-      current_user.rated.include?(id) ? true : false
-    end
-  end
-
-  def counter(index)
-    index + 1 + (@movies.current_page - 1) * @movies.page.limit_value
   end
 
   private
